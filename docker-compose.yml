@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/var/www/html:cached
+    depends_on:
+      - php
+      - mysql
+
+  php:
+    image: php:8.2-fpm
+    volumes:
+      - ./app:/var/www/html:cached
+    environment:
+      - DB_HOST=mysql
+      - DB_NAME=portfolio_db
+      - DB_USER=root
+      - DB_PASS=root
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: portfolio_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+volumes:
+  db_data:

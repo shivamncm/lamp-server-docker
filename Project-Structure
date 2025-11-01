@@ -1,0 +1,11 @@
+Project structure 
+
+lemp-project/
+├── app/
+│ └── index.php ← your main page
+├── nginx/
+│ ├── Dockerfile
+│ └── default.conf
+├── mysql/
+│ └── init.sql
+└── docker-compose.yml
