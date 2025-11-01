@@ -6,7 +6,7 @@
 $host = getenv('DB_HOST') ?: 'mysql';
 $dbname = getenv('DB_NAME') ?: 'portfolio_db';
 $username = getenv('DB_USER') ?: 'root';
-$password = getenv('DB_PASS') ?: 'root';
+$password = getenv('DB_PASS') ?: 'rootpass';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password, [
